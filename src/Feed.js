@@ -3,6 +3,7 @@ import Article from "./Article";
 import "./index.css";
 
 const Feed = ({ articles }) => {
+  console.log(articles);
   return (
     <div className="container">
       {articles?.map?.((article) => (
