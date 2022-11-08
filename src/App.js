@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// import "./styles.css";
+import Feed from "./Feed";
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 
-function App() {
+export default function App() {
+  const [articles, setArticles] = useState();
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=cG4D80fY9E7z5VAA4bNkpFXXjoaix87L"
+      )
+      .then((response) => {
+        const data = response.data.response;
+        setArticles(data.docs);
+        console.log(articles);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Feed articles={articles} />
     </div>
   );
 }
-
-export default App;
