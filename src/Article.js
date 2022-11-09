@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 
 const Article = ({ data }) => (
-  <Card sx={{ width: 600, height: 600 }}>
+  <Card sx={{ width: 500, height: 500 }}>
     <CardHeader
       title={data.headline.main}
       subheader={data.pub_date}

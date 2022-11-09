@@ -10,7 +10,7 @@ export default function App() {
   useEffect(() => {
     axios
       .get(
-        "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:Travel&api-key=cG4D80fY9E7z5VAA4bNkpFXXjoaix87L"
+        "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:Travel&document_type=article&query=36-hours&api-key=cG4D80fY9E7z5VAA4bNkpFXXjoaix87L"
       )
 
       .then((response) => {
