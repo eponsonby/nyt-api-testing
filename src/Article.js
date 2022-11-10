@@ -15,7 +15,7 @@ const Article = ({ data }) => (
       component="img"
       height="252"
       width="252"
-      image={`https://static01.nyt.com/${data.multimedia[0]?.url}`}
+      image={`https://static01.nyt.com/${data.multimedia[8]?.url}`}
     ></CardMedia>
     <CardContent>
       <Typography>{data.abstract}</Typography>

@@ -1,16 +1,17 @@
-// import "./styles.css";
+import "./index.css";
 import Feed from "./Feed";
+import Search from "./Search";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 
 export default function App() {
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:Travel&document_type=article&query=36-hours&api-key=cG4D80fY9E7z5VAA4bNkpFXXjoaix87L"
+        "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:Travel&query=36-hours&api-key=cG4D80fY9E7z5VAA4bNkpFXXjoaix87L"
       )
 
       .then((response) => {
@@ -21,8 +22,18 @@ export default function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Feed articles={articles} />
-    </div>
+    <>
+      <h1>New York Times Travel Guides</h1>
+      <div className="App">
+        <div>
+          {articles !== [] ? (
+            <Search articles={articles} />
+          ) : (
+            <div>loading</div>
+          )}
+        </div>
+        <Feed articles={articles} />
+      </div>
+    </>
   );
 }
