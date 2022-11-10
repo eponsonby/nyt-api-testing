@@ -1,12 +1,22 @@
 import "./index.css";
-import Feed from "./Feed";
 import Search from "./Search";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import _ from "lodash";
 
 export default function App() {
   const [articles, setArticles] = useState([]);
+
+  const filterArticles = (e) => {
+    const sortedCities = _.orderBy(articles, "headline.main", "asc");
+    if (e.target.value) {
+      let filteredArticle = sortedCities.filter(
+        (article) => article.headline.main === `36 Hours in ${e.target.value}`
+      );
+      return filteredArticle;
+    }
+  };
 
   useEffect(() => {
     axios
@@ -27,12 +37,11 @@ export default function App() {
       <div className="App">
         <div>
           {articles !== [] ? (
-            <Search articles={articles} />
+            <Search articles={articles} onFilter={filterArticles} />
           ) : (
             <div>loading</div>
           )}
         </div>
-        <Feed articles={articles} />
       </div>
     </>
   );
